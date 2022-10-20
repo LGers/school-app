@@ -65,7 +65,6 @@ class UsersController {
 
     async signIn(req, res, next) {
         try {
-            // console.log('signIn', req.body);
             const { email, password } = req.body;
             if (!email || !password) {
                 return next(apiError.badRequest('Email or password is incorrect'));
