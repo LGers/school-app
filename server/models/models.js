@@ -45,6 +45,7 @@ Mark.belongsTo(Subject);
 const Teacher = sequelize.define('teacher', {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
 });
+
 Teacher.hasMany(Mark);
 Mark.belongsTo(Teacher);
 
@@ -54,10 +55,23 @@ Teacher.belongsTo(Users);
 Subject.hasMany(Teacher);
 Teacher.belongsTo(Subject);
 
+const Schedule = sequelize.define('schedule', {
+    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+    date: { type: DataTypes.DATE },
+    homework: {type: DataTypes.STRING },
+});
+
+Class.hasMany(Schedule);
+Schedule.belongsTo(Class);
+
+Subject.hasMany(Schedule);
+Schedule.belongsTo(Subject);
+
 module.exports = {
-  Users,
-  Class,
-  Mark,
-  Subject,
-  Teacher,
+    Users,
+    Class,
+    Mark,
+    Subject,
+    Teacher,
+    Schedule,
 };
