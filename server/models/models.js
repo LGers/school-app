@@ -23,7 +23,21 @@ const Class_student = sequelize.define('class_student', {
 Class.hasMany(Users);
 Class.belongsToMany(Users, { through: Class_student });
 
+
+const Mark = sequelize.define('mark', {
+    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+    mark: { type: DataTypes.INTEGER },
+    date: { type: DataTypes.DATEONLY },
+    userId: { type: DataTypes.INTEGER },
+    teacherId: { type: DataTypes.INTEGER },
+    subjectId: { type: DataTypes.INTEGER },
+});
+
+Users.hasMany(Mark);
+Mark.belongsTo(Users);
+
 module.exports = {
     Users,
     Class,
+    Mark,
 };
