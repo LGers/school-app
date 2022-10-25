@@ -30,14 +30,22 @@ const Mark = sequelize.define('mark', {
     date: { type: DataTypes.DATEONLY },
     userId: { type: DataTypes.INTEGER },
     teacherId: { type: DataTypes.INTEGER },
-    subjectId: { type: DataTypes.INTEGER },
 });
 
 Users.hasMany(Mark);
 Mark.belongsTo(Users);
 
+const Subject = sequelize.define('subject', {
+    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+    subject: { type: DataTypes.STRING, unique: true },
+});
+
+Subject.hasMany(Mark);
+Mark.belongsTo(Subject);
+
 module.exports = {
     Users,
     Class,
     Mark,
+    Subject,
 };
