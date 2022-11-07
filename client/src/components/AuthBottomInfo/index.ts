@@ -1,0 +1,1 @@
+export { AuthBottomInfo } from './AuthBottomInfo';
