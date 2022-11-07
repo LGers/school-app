@@ -25,6 +25,7 @@ module.exports = {
     '@typescript-eslint',
   ],
   rules: {
+    'linebreak-style': 0,
     'import/prefer-default-export': 'off',
     'spaced-comment': 'off',
     "@typescript-eslint/no-unused-vars": ["warn"],
