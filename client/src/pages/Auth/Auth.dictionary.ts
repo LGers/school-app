@@ -54,3 +54,11 @@ export const SIGN_UP_MESSAGES = {
   HAVE_ACCOUNT: 'Already have an account?',
   HAVE_ACCOUNT_LINK_TITLE: 'Sign In',
 };
+
+export const SIGN_IN_MESSAGES = {
+  ERROR_TITLE: 'Authorization Error',
+  HAVE_ACCOUNT: 'Don\'t have an account?',
+  HAVE_ACCOUNT_LINK_TITLE: 'Sign Up',
+  RESTORE_PASSWORD: 'Can\'t Sign In?',
+  RESTORE_PASSWORD_LINK_TITLE: 'Restore Password',
+};
