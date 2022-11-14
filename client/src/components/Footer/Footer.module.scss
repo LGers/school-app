@@ -1,0 +1,9 @@
+.footer {
+  display: flex;
+  justify-content: center;
+
+  & img {
+    width: 32px;
+    height: 32px;
+  }
+}

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Header } from '../../components/Header';
 import { Wrapper } from '../../components/Wrapper';
+import { Footer } from '../../components/Footer';
 
 export function Main() {
   return (
@@ -10,7 +11,7 @@ export function Main() {
         <h1>The Crawler - The school</h1>
         <h2>Main Page</h2>
       </main>
-      <footer>Footer</footer>
+      <Footer />
     </Wrapper>
   );
 }
