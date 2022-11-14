@@ -1,0 +1,61 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 12px 12px;
+
+  &Left {
+    display: flex;
+    flex: 1;
+    min-width: 200px;
+    gap: 12px;
+    flex-wrap: nowrap;
+  }
+
+  &Name {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &Logo {
+    &Img {
+      height: 20px;
+      width: 20px;
+    }
+
+    &Title {
+      font-size: 16px;
+      font-weight: 600;
+      white-space: nowrap;
+      margin: 0;
+    }
+  }
+
+  &Right {
+    display: flex;
+    gap: 12px;
+    flex-wrap: nowrap;
+  }
+}
+
+@media all and (min-width: 426px) {
+  .header {
+    flex-wrap: wrap;
+    padding: 24px 24px;
+
+    &Logo {
+      &Img {
+        height: 32px;
+        width: 32px;
+      }
+
+      &Title {
+        font-size: 20px;
+      }
+    }
+  }
+}
