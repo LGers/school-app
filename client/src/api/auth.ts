@@ -1,5 +1,8 @@
 import { instance } from './instance';
-import { SignInInterface, SignUpInterface } from './api.types';
+import {
+  SignInInterface,
+  SignUpInterface,
+} from './api.types';
 
 export const URL = {
   signIn: () => 'signin',

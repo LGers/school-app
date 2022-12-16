@@ -9,5 +9,6 @@ instance.interceptors.request.use(async (axiosRequest) => {
     Accept: 'application/json',
     Authorization: `Bearer ${localStorage.getItem('authToken')}`,
   };
+
   return axiosRequest;
 });

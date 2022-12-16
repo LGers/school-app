@@ -43,9 +43,13 @@ export function SignUp() {
     const {
       firstName, lastName, email, password,
     } = data;
-    store.dispatch(fetchSignUp({
+    const res = await store.dispatch(fetchSignUp({
       firstName, lastName, email, password,
     }));
+
+    if (res.meta.requestStatus === 'fulfilled') {
+      navigate(PATH.SIGN_IN);
+    }
   };
 
   const handleResetErrorMessage = () => {
@@ -57,10 +61,6 @@ export function SignUp() {
       navigate(PATH.HOME);
     }
   }, [auth.isAuth, navigate]);
-
-  useEffect(() => () => {
-    dispatch(resetErrorMessage());
-  }, [dispatch]);
 
   return (
     <Wrapper>

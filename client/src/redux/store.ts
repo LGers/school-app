@@ -2,9 +2,11 @@ import {
   AnyAction, combineReducers, configureStore, Reducer,
 } from '@reduxjs/toolkit';
 import { authReducer } from './auth/auth.slice';
+import { usersReducer } from './users/users.slice';
 
 const combinedReducer = combineReducers({
   auth: authReducer,
+  users: usersReducer,
 });
 
 const rootReducer: Reducer = (state: RootState, action: AnyAction) => {
