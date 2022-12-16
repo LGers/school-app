@@ -1,9 +1,10 @@
 .footer {
   display: flex;
   justify-content: center;
+  padding: 6px;
 
   & img {
-    width: 32px;
     height: 32px;
+    width: 32px;
   }
 }

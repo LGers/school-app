@@ -1,12 +1,12 @@
-import { MyKnownError } from './auth/auth.types';
+import { ApiError } from './redux.types';
 
-export const getErrorData = (error: MyKnownError): MyKnownError => {
-  const errorData: MyKnownError = { message: '', status: 0 };
-  if ((error as MyKnownError).response) {
-    errorData.message = (error as MyKnownError).response?.data.message ?? '';
-    errorData.status = (error as MyKnownError).request?.status ?? 0;
+export const getErrorData = (error: ApiError): ApiError => {
+  const errorData: ApiError = { message: '', status: 0 };
+  if ((error as ApiError).response) {
+    errorData.message = (error as ApiError).response?.data.message ?? '';
+    errorData.status = (error as ApiError).request?.status ?? 0;
   } else {
-    errorData.message = (error as MyKnownError).message ?? '';
+    errorData.message = (error as ApiError).message ?? '';
     errorData.status = 0;
   }
   return errorData;

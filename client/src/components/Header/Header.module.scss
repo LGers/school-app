@@ -1,61 +1,58 @@
 .header {
-  display: flex;
-  justify-content: space-between;
   align-items: center;
+  display: flex;
   flex-wrap: wrap;
   gap: 12px;
-  padding: 12px 12px;
+  justify-content: space-between;
+  padding: 24px;
+
+  @media all and (max-width: 576px) {
+    flex-wrap: wrap;
+    padding: 12px;
+  }
 
   &Left {
+    align-items: center;
     display: flex;
     flex: 1;
-    min-width: 200px;
-    gap: 12px;
     flex-wrap: nowrap;
+    gap: 12px;
+    min-width: 200px;
   }
 
   &Name {
     display: block;
-    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   &Logo {
     &Img {
-      height: 20px;
-      width: 20px;
+      height: 32px;
+      width: 32px;
+
+      @media all and (max-width: 576px) {
+        height: 20px;
+        width: 20px;
+      }
     }
 
     &Title {
-      font-size: 16px;
+      font-size: 20px;
       font-weight: 600;
-      white-space: nowrap;
       margin: 0;
+      white-space: nowrap;
+
+      @media all and (max-width: 576px) {
+        font-size: 16px;
+      }
     }
   }
 
   &Right {
     display: flex;
-    gap: 12px;
     flex-wrap: nowrap;
-  }
-}
-
-@media all and (min-width: 426px) {
-  .header {
-    flex-wrap: wrap;
-    padding: 24px 24px;
-
-    &Logo {
-      &Img {
-        height: 32px;
-        width: 32px;
-      }
-
-      &Title {
-        font-size: 20px;
-      }
-    }
+    gap: 12px;
   }
 }

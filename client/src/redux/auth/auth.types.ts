@@ -3,10 +3,11 @@ export interface SignInData {
 }
 
 export interface User {
-  id: number | undefined;
+  id: number;
   firstName: string;
   lastName: string;
   role: string;
+  email: string;
 }
 
 export interface AuthState {
@@ -17,25 +18,4 @@ export interface AuthState {
     message: string;
     status: number;
   };
-}
-
-export interface MyKnownError {
-  message: string;
-  status: number;
-  response?: {
-    data: {
-      message: string;
-    };
-  };
-  request?: {
-    status: number;
-  };
-}
-
-export interface TokenData {
-  id: number,
-  firstName: string,
-  lastName: string,
-  role: string,
-  exp: number
 }

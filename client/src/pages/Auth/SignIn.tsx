@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
+import jwtDecode from 'jwt-decode';
 import { Wrapper } from '../../components/Wrapper';
 import s from './Auth.module.scss';
 import { SignInFormInputs } from './Auth.types';
@@ -19,10 +20,11 @@ import {
 import { signInValidationSchema } from './Auth.validation';
 import { RootState, store } from '../../redux/store';
 import { PATH } from '../../constants/common.dictionary';
-import { fetchSignIn } from '../../redux/auth/auth.thunk';
-import { resetErrorMessage } from '../../redux/auth/auth.slice';
+import { fetchGetOneUser, fetchSignIn } from '../../redux/auth/auth.thunk';
+import { logout, resetErrorMessage } from '../../redux/auth/auth.slice';
 import { AuthBottomInfo } from '../../components/AuthBottomInfo';
 import { AuthHeader } from '../../components/AuthHeader';
+import { TokenData } from '../../redux/redux.types';
 
 const { EMAIL, PASSWORD } = SIGN_IN_FORM_FIELDS;
 const { Title } = Typography;
@@ -40,7 +42,17 @@ export function SignIn() {
 
   const onSubmit: SubmitHandler<SignInFormInputs> = async (data) => {
     const { email, password } = data;
-    store.dispatch(fetchSignIn({ email, password }));
+    const res = await store.dispatch(fetchSignIn({ email, password }));
+
+    if (res.meta.requestStatus === 'fulfilled') {
+      const token = localStorage.getItem('authToken');
+      try {
+        const { id } = jwtDecode(token ?? '') as TokenData;
+        store.dispatch(fetchGetOneUser({ id }));
+      } catch (e) {
+        dispatch(logout());
+      }
+    }
   };
 
   const handleResetErrorMessage = () => {
