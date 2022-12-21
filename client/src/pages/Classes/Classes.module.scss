@@ -1,0 +1,14 @@
+.classes {
+
+  &Text {
+    white-space: nowrap;
+  }
+
+  &Count {
+    align-items: center;
+    display: flex;
+    font-weight: 600;
+    justify-content: center;
+    margin: 0;
+  }
+}

@@ -21,10 +21,23 @@ export interface UpdateUserInterface {
   role: string;
 }
 
+export interface Id {
+  id: number;
+}
+
 export interface DeleteUserInterface {
   id: number;
 }
 
 export interface GetOneUserInterface {
+  id: number;
+}
+
+export interface CreateClassInterface {
+  classNumber: string;
+  classLetter: string;
+}
+
+export interface UpdateClassInterface extends CreateClassInterface {
   id: number;
 }

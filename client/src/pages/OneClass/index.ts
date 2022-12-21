@@ -1,0 +1,1 @@
+export { OneClass } from './OneClass';

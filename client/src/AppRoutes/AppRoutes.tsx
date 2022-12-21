@@ -16,6 +16,8 @@ import { logout } from '../redux/auth/auth.slice';
 import { fetchGetOneUser } from '../redux/auth/auth.thunk';
 import { store } from '../redux';
 import { User } from '../redux/auth/auth.types';
+import { Classes } from '../pages/Classes';
+import { OneClass } from '../pages/OneClass';
 
 export function AppRoutes() {
   const dispatch = useDispatch();
@@ -45,6 +47,8 @@ export function AppRoutes() {
         <Route path={PATH.SIGN_UP} element={<SignUp />} />
         <Route path={PATH.SIGN_IN} element={<SignIn />} />
         <Route path={PATH.ACCOUNT_PROFILE} element={<Profile />} />
+        <Route path={PATH.CLASSES} element={<Classes />} />
+        <Route path={`${PATH.CLASSES}/:id`} element={<OneClass />} />
         <Route path="*" element={<Page404 />} />
       </Routes>
     </BrowserRouter>
