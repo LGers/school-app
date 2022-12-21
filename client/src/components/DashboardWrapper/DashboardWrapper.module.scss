@@ -1,0 +1,28 @@
+@mixin d-flex-col {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+.dashboardWrapper {
+  @include d-flex-col;
+
+  &Main {
+    @include d-flex-col;
+    background: #f9faff;
+    padding: 24px;
+
+    @media all and (max-width: 576px) {
+      padding: 12px;
+    }
+  }
+
+  &Content {
+    height: 100%;
+    overflow: hidden;
+    overflow-y: auto;
+    overflow-x: auto;
+    padding: 8px 0;
+  }
+}

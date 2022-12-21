@@ -1,0 +1,1 @@
+export { EditClassForm } from './EditClassForm';

@@ -3,10 +3,12 @@ import {
 } from '@reduxjs/toolkit';
 import { authReducer } from './auth/auth.slice';
 import { usersReducer } from './users/users.slice';
+import { classesReducer } from './classes/classes.slice';
 
 const combinedReducer = combineReducers({
   auth: authReducer,
   users: usersReducer,
+  classes: classesReducer,
 });
 
 const rootReducer: Reducer = (state: RootState, action: AnyAction) => {
