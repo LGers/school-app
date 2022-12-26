@@ -19,10 +19,11 @@
   }
 
   &Content {
+    background: #fff;
     height: 100%;
     overflow: hidden;
-    overflow-y: auto;
     overflow-x: auto;
+    overflow-y: auto;
     padding: 8px 0;
   }
 }

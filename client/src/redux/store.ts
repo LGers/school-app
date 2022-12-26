@@ -4,11 +4,13 @@ import {
 import { authReducer } from './auth/auth.slice';
 import { usersReducer } from './users/users.slice';
 import { classesReducer } from './classes/classes.slice';
+import { oneClassReducer } from './oneClass/oneClass.slice';
 
 const combinedReducer = combineReducers({
   auth: authReducer,
   users: usersReducer,
   classes: classesReducer,
+  oneClass: oneClassReducer,
 });
 
 const rootReducer: Reducer = (state: RootState, action: AnyAction) => {
