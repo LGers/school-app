@@ -41,3 +41,9 @@ export interface CreateClassInterface {
 export interface UpdateClassInterface extends CreateClassInterface {
   id: number;
 }
+
+export interface UpdateUserRoleAndClassIdInterface {
+  id: number;
+  role: string;
+  classId: number | string | null;
+}

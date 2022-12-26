@@ -6,13 +6,13 @@ import { Header } from '../Header';
 import { DashboardMenu } from '../DashboardMenu';
 import { Footer } from '../Footer';
 
-export function DashboardWrapper({ children }: Props) {
+export function DashboardWrapper({ children, currentPage }: Props) {
   return (
     <Wrapper>
       <div className={s.dashboardWrapper}>
         <Header />
         <main className={s.dashboardWrapperMain}>
-          <DashboardMenu currentPage="classes" />
+          <DashboardMenu currentPage={currentPage} />
           <div className={s.dashboardWrapperContent}>
             {children}
           </div>
