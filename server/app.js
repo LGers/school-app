@@ -19,13 +19,13 @@ app.use('/api', router);
 
 app.use(errorHandler);
 const start = async () => {
-    try {
-        await sequelize.authenticate();
-        await sequelize.sync({ alter: true });
-        app.listen(PORT, () => console.log(`Server started on port: ${PORT}`));
-    } catch (error) {
-        console.log('App error:', error);
-    }
+  try {
+    await sequelize.authenticate();
+    await sequelize.sync({ alter: true });
+    app.listen(PORT, () => console.log(`Server started on port: ${PORT}`));
+  } catch (error) {
+    console.log('App error:', error);
+  }
 };
 
 start();
