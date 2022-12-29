@@ -19,6 +19,7 @@ import {
   confirmModal, errorModal, successModal,
 } from '../../components/Modal';
 import { fetchDeleteUser } from '../../redux/auth/auth.thunk';
+import { resetUsersErrorMessage } from '../../redux/users/users.slice';
 
 const { Title } = Typography;
 
@@ -28,7 +29,7 @@ export function Profile() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { auth } = useSelector((state: RootState) => state);
+  const { auth, users } = useSelector((state: RootState) => state);
   const {
     firstName, lastName, email, role,
   } = auth.user;
@@ -66,11 +67,17 @@ export function Profile() {
   };
 
   useEffect(() => {
-    if (auth.error.message) {
+    if (+auth.error.status === 401 || +users.error.status === 401) {
+      dispatch(logout());
+      navigate(PATH.SIGN_IN);
+    } else if (auth.error.message) {
       errorModal(auth.error.message);
       dispatch(resetErrorMessage());
+    } else if (users.error.message) {
+      errorModal(users.error.message);
+      dispatch(resetUsersErrorMessage());
     }
-  }, [auth.error.message, dispatch]);
+  }, [auth.error, dispatch, navigate, users.error]);
 
   return (
     <Wrapper>

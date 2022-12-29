@@ -19,7 +19,7 @@ import {
 } from './Auth.dictionary';
 import { signInValidationSchema } from './Auth.validation';
 import { RootState, store } from '../../redux/store';
-import { PATH } from '../../constants/common.dictionary';
+import { PATH, Roles } from '../../constants/common.dictionary';
 import { fetchGetOneUser, fetchSignIn } from '../../redux/auth/auth.thunk';
 import { logout, resetErrorMessage } from '../../redux/auth/auth.slice';
 import { AuthBottomInfo } from '../../components/AuthBottomInfo';
@@ -28,9 +28,13 @@ import { TokenData } from '../../redux/redux.types';
 
 const { EMAIL, PASSWORD } = SIGN_IN_FORM_FIELDS;
 const { Title } = Typography;
+const {
+  ADMIN, TEACHER, STUDENT, USER,
+} = Roles;
 
 export function SignIn() {
-  const auth = useSelector((state: RootState) => state.auth);
+  const { auth } = useSelector((state: RootState) => state);
+  const { role } = auth.user;
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -61,9 +65,28 @@ export function SignIn() {
 
   useEffect(() => {
     if (auth.isAuth) {
-      navigate(PATH.HOME);
+      switch (role) {
+        case STUDENT:
+          navigate(PATH.STUDENT);
+          break;
+
+        case TEACHER:
+          navigate(PATH.CLASSES);
+          break;
+
+        case ADMIN:
+          navigate(PATH.CLASSES);
+          break;
+
+        case USER:
+          navigate(PATH.USER);
+          break;
+
+        default:
+          navigate(PATH.HOME);
+      }
     }
-  }, [auth.isAuth, navigate]);
+  }, [auth.isAuth, navigate, role]);
 
   return (
     <Wrapper>

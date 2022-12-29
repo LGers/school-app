@@ -29,11 +29,10 @@ export function EditProfileForm({ isOpen, setIsOpen }: EditProfileFormProps) {
 
     if (res.meta.requestStatus === 'fulfilled') {
       successModal(EDIT_PROFILE.SUCCESSFULLY_UPDATED);
+      dispatch(updateUser(res.payload));
+      form.resetFields();
+      setIsOpen(false);
     }
-
-    dispatch(updateUser(res.payload));
-    form.resetFields();
-    setIsOpen(false);
   };
 
   const onCancel = () => {
