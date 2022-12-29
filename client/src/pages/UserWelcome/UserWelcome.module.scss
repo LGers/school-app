@@ -1,0 +1,13 @@
+@mixin d-flex-col {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+.userWrapper {
+  &Messages {
+    @include d-flex-col;
+    align-items: center;
+  }
+}
