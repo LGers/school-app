@@ -10,13 +10,20 @@
   align-items: center;
   background: white;
   border-radius: 3px;
-  box-shadow: 0px 0px 5px 5px rgba(144, 144, 144, 0.46);
+  box-shadow: 0 0 5px 5px rgba(144, 144, 144, 0.46);
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin-bottom: 2rem;
   max-width: 320px;
-  padding: 15px;
+  padding: 1rem;
   width: 100%;
+
+  @media all and (max-width: 425px) {
+    border-radius: 0;
+    box-shadow: none;
+    max-width: 425px;
+  }
 }
 
 .form {
@@ -27,7 +34,7 @@
   width: 100%;
 
   & button {
-    margin: 20px 0;
+    margin: 1.5rem 0;
   }
 }
 
@@ -48,16 +55,5 @@
 
   &Text {
     white-space: nowrap;
-  }
-}
-
-@media all and (max-width: 425px) {
-  body {
-    background-color: lightblue;
-  }
-  .authWrapper {
-    border-radius: 0;
-    box-shadow: none;
-    max-width: 425px;
   }
 }

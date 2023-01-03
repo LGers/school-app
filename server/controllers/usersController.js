@@ -132,12 +132,13 @@ class UsersController {
         newUser.password = await bcrypt.hash(password, 12);
       }
 
-      const candidate = await Users.findOne({ where: { email } });
-
-      if (candidate && candidate.id !== +id) {
-        return next(apiError
-          .badRequest('The user with such email already exist. Enter another email.')
-        );
+      if (email) {
+        const candidate = await Users.findOne({ where: { email } });
+        if (candidate && candidate.id !== +id) {
+          return next(apiError
+            .badRequest('The user with such email already exist. Enter another email.')
+          );
+        }
       }
 
       const updatedUser = await user.update({ ...newUser, where: { id } });

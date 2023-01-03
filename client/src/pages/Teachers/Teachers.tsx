@@ -4,11 +4,11 @@ import {
   Button, Result, Space,
 } from 'antd';
 import { ContentWrapper } from '../../components/ContentWrapper';
-import { PAGE_404 } from './Page404.dictionary';
+import { TEACHERS } from './Teachers.dictionary';
 
-const { TITLE, MESSAGE, BACK } = PAGE_404;
+const { TITLE, MESSAGE, BACK } = TEACHERS;
 
-export function Page404() {
+export function Teachers() {
   const navigate = useNavigate();
 
   const handleBack = () => {
@@ -18,7 +18,7 @@ export function Page404() {
   return (
     <ContentWrapper>
       <Result
-        status="404"
+        status="warning"
         title={TITLE}
         subTitle={MESSAGE}
         extra={(
