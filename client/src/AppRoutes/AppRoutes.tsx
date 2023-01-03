@@ -25,6 +25,8 @@ import {
   ProtectedRoute,
   StudentProtectedRoute, TeacherProtectedRoute, UserProtectedRoute,
 } from './ProtectedRoutes';
+import { RestorePassword } from '../pages/ResotorePassword';
+import { Teachers } from '../pages/Teachers';
 
 export function AppRoutes() {
   const dispatch = useDispatch();
@@ -60,6 +62,7 @@ export function AppRoutes() {
         />
         <Route path={PATH.SIGN_UP} element={<SignUp />} />
         <Route path={PATH.SIGN_IN} element={<SignIn />} />
+        <Route path={PATH.RESTORE_PASSWORD} element={<RestorePassword />} />
         <Route
           path={PATH.ACCOUNT_PROFILE}
           element={(
@@ -73,6 +76,14 @@ export function AppRoutes() {
           element={(
             <TeacherProtectedRoute>
               <Classes />
+            </TeacherProtectedRoute>
+          )}
+        />
+        <Route
+          path={PATH.TEACHERS}
+          element={(
+            <TeacherProtectedRoute>
+              <Teachers />
             </TeacherProtectedRoute>
           )}
         />

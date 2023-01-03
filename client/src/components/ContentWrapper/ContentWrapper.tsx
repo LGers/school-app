@@ -1,17 +1,17 @@
 import * as React from 'react';
-import s from './UserWrapper.module.scss';
-import { Props } from './UserWrapper.types';
+import s from './ContentWrapper.module.scss';
+import { Props } from './ContentWrapper.types';
 import { Wrapper } from '../Wrapper';
 import { Header } from '../Header';
 import { Footer } from '../Footer';
 
-export function UserWrapper({ children }: Props) {
+export function ContentWrapper({ children }: Props) {
   return (
     <Wrapper>
-      <div className={s.userWrapper}>
+      <div className={s.contentWrapper}>
         <Header />
-        <main className={s.userWrapperMain}>
-          <div className={s.userWrapperContent}>
+        <main className={s.contentWrapperMain}>
+          <div className={s.contentWrapperContent}>
             {children}
           </div>
         </main>

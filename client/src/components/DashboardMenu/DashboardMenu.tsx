@@ -6,12 +6,12 @@ import { DashboardMenuProps } from './DashboardMenu.types';
 
 const items: MenuProps['items'] = [
   {
-    label: (<Link to={PATH.USERS}>Users</Link>),
-    key: 'users',
-  },
-  {
     label: (<Link to={PATH.CLASSES}>Classes</Link>),
     key: 'classes',
+  },
+  {
+    label: (<Link to={PATH.TEACHERS}>Teachers</Link>),
+    key: 'teachers',
   },
 ];
 

@@ -5,12 +5,12 @@
   overflow: hidden;
 }
 
-.userWrapper {
+.contentWrapper {
   @include d-flex-col;
 
   &Main {
     @include d-flex-col;
-    background: #f9faff;
+    background: #fff;
     padding: 24px;
 
     @media all and (max-width: 576px) {

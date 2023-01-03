@@ -8,6 +8,7 @@ export const PATH = {
   CLASSES: '/classes',
   USER: '/user',
   STUDENT: '/student',
+  TEACHERS: '/teachers',
 };
 
 export enum Roles {
