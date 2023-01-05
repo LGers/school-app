@@ -13,8 +13,10 @@ import { getErrorData } from '../redux.utils';
 import { deleteUser, getOneUser } from '../../api/users';
 import { ApiError } from '../redux.types';
 
+const PREFIX = 'auth';
+
 export const fetchSignIn = createAsyncThunk<SignInData, SignInInterface>(
-  'auth/fetchLogin',
+  `${PREFIX}/fetchLogin`,
   async ({ email, password }: SignInInterface, thunkAPI) => {
     try {
       const res = await signIn({ email, password });
@@ -27,7 +29,7 @@ export const fetchSignIn = createAsyncThunk<SignInData, SignInInterface>(
 );
 
 export const fetchSignUp = createAsyncThunk(
-  'auth/fetchSignUp',
+  `${PREFIX}/fetchSignUp`,
   async ({
     firstName, lastName, email, password,
   }: SignUpInterface, thunkAPI) => {
@@ -44,7 +46,7 @@ export const fetchSignUp = createAsyncThunk(
 );
 
 export const fetchDeleteUser = createAsyncThunk(
-  'auth/fetchDeleteUser',
+  `${PREFIX}/fetchDeleteUser`,
   async ({
     id,
   }: DeleteUserInterface, thunkAPI) => {
@@ -59,7 +61,7 @@ export const fetchDeleteUser = createAsyncThunk(
 );
 
 export const fetchGetOneUser = createAsyncThunk(
-  'auth/fetchGetOneUser',
+  `${PREFIX}/fetchGetOneUser`,
   async ({
     id,
   }: GetOneUserInterface, thunkAPI) => {

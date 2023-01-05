@@ -47,3 +47,8 @@ export interface UpdateUserRoleAndClassIdInterface {
   role: string;
   classId: number | string | null;
 }
+
+export interface UpdateUserRoleInterface {
+  id: number;
+  role: string;
+}

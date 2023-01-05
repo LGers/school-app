@@ -3,7 +3,7 @@ const { Teacher, Users, Subject } = require('../models/models');
 
 const INTERNAL_ERROR = 'Internal error.';
 
-class SubjectController {
+class TeacherController {
   async getAll(req, res, next) {
     try {
       const items = await Teacher.findAll();
@@ -134,4 +134,4 @@ class SubjectController {
   }
 }
 
-module.exports = new SubjectController();
+module.exports = new TeacherController();

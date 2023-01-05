@@ -6,8 +6,10 @@ import {
   createOneClass, deleteOneClass, getAllClasses, updateOneClass,
 } from '../../api/classes';
 
+const PREFIX = 'classes';
+
 export const fetchGetAllClasses = createAsyncThunk(
-  'classes/fetchGetAllClasses',
+  `${PREFIX}/fetchGetAllClasses`,
   async (_, thunkAPI) => {
     try {
       const res = await getAllClasses();
@@ -20,7 +22,7 @@ export const fetchGetAllClasses = createAsyncThunk(
 );
 
 export const fetchDeleteClass = createAsyncThunk(
-  'classes/fetchDeleteClass',
+  `${PREFIX}/fetchDeleteClass`,
   async (id: number, thunkAPI) => {
     try {
       const res = await deleteOneClass(id);
@@ -33,7 +35,7 @@ export const fetchDeleteClass = createAsyncThunk(
 );
 
 export const fetchCreateClass = createAsyncThunk(
-  'classes/fetchCreateClass',
+  `${PREFIX}/fetchCreateClass`,
   async (oneClass: CreateClassInterface, thunkAPI) => {
     try {
       const res = await createOneClass(oneClass);
@@ -46,7 +48,7 @@ export const fetchCreateClass = createAsyncThunk(
 );
 
 export const fetchUpdateClass = createAsyncThunk(
-  'classes/fetchUpdateClass',
+  `${PREFIX}/fetchUpdateClass`,
   async (oneClass: UpdateClassInterface, thunkAPI) => {
     try {
       const res = await updateOneClass(oneClass);

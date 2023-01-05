@@ -1,7 +1,11 @@
 import { instance } from './instance';
 import {
-  DeleteUserInterface, GetOneUserInterface,
-  UpdatePasswordInterface, UpdateUserInterface, UpdateUserRoleAndClassIdInterface,
+  DeleteUserInterface,
+  GetOneUserInterface,
+  UpdatePasswordInterface,
+  UpdateUserInterface,
+  UpdateUserRoleAndClassIdInterface,
+  UpdateUserRoleInterface,
 } from './api.types';
 
 export const URL = {
@@ -36,4 +40,10 @@ export const updateUserRoleAndClassId = ({
 }: UpdateUserRoleAndClassIdInterface) => instance.put(URL.updateUser(id), {
   role,
   classId,
+});
+
+export const updateUserRole = ({
+  id, role,
+}: UpdateUserRoleInterface) => instance.put(URL.updateUser(id), {
+  role,
 });
