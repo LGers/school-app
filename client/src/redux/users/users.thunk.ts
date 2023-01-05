@@ -8,8 +8,9 @@ import { getErrorData } from '../redux.utils';
 import { deleteUser, updatePassword, updateUser } from '../../api/users';
 import { ApiError } from '../redux.types';
 
+const PREFIX = 'users';
 export const fetchUpdatePassword = createAsyncThunk(
-  'users/fetchUpdatePassword',
+  `${PREFIX}/fetchUpdatePassword`,
   async ({
     id, password,
   }: UpdatePasswordInterface, thunkAPI) => {
@@ -26,7 +27,7 @@ export const fetchUpdatePassword = createAsyncThunk(
 );
 
 export const fetchUpdateUser = createAsyncThunk(
-  'users/fetchUpdateUser',
+  `${PREFIX}/fetchUpdateUser`,
   async ({
     id, firstName, lastName, email, role,
   }: UpdateUserInterface, thunkAPI) => {
@@ -43,7 +44,7 @@ export const fetchUpdateUser = createAsyncThunk(
 );
 
 export const fetchDeleteUser = createAsyncThunk(
-  'users/fetchDeleteUser',
+  `${PREFIX}/fetchDeleteUser`,
   async ({
     id,
   }: DeleteUserInterface, thunkAPI) => {

@@ -5,8 +5,10 @@ import { getErrorData } from '../redux.utils';
 import { ApiError } from '../redux.types';
 import { getAllUsers, updateUserRoleAndClassId } from '../../api/users';
 
+const PREFIX = 'oneClass';
+
 export const fetchGetOneClass = createAsyncThunk(
-  'oneClass/fetchGetOneClass',
+  `${PREFIX}/fetchGetOneClass`,
   async ({ id } : Id, thunkAPI) => {
     try {
       const res = await getOneClass({ id });
@@ -19,7 +21,7 @@ export const fetchGetOneClass = createAsyncThunk(
 );
 
 export const fetchGetAllClasses = createAsyncThunk(
-  'oneClass/fetchGetAllClasses',
+  `${PREFIX}/fetchGetAllClasses`,
   async (_, thunkAPI) => {
     try {
       const res = await getAllClasses();
@@ -32,7 +34,7 @@ export const fetchGetAllClasses = createAsyncThunk(
 );
 
 export const fetchGetAllUsers = createAsyncThunk(
-  'oneClass/fetchGetAllUsers',
+  `${PREFIX}/fetchGetAllUsers`,
   async (_, thunkAPI) => {
     try {
       const res = await getAllUsers();
@@ -45,7 +47,7 @@ export const fetchGetAllUsers = createAsyncThunk(
 );
 
 export const fetchUpdateStudent = createAsyncThunk(
-  'oneClass/fetchUpdateStudent',
+  `${PREFIX}/fetchUpdateStudent`,
   async ({
     id, role, classId,
   }: UpdateUserRoleAndClassIdInterface, thunkAPI) => {

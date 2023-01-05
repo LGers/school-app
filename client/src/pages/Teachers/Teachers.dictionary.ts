@@ -1,6 +1,15 @@
 export const TEACHERS = {
-  TITLE: 'Teachers is not available now.',
-  BACK: 'Back',
-  BACK_HOME: 'Back home',
-  MESSAGE: 'Sorry, teachers dashboard come later...',
+  TITLE: 'Teachers',
+  TABS: {
+    LABEL1: 'Teachers',
+    LABEL2: 'Add teachers',
+  },
+  BUTTON: {
+    ADD: 'Add teachers',
+    DELETE: 'Delete teachers',
+  },
+  SUCCESS: {
+    ADDED: 'Teachers added successfully',
+    DELETED: 'Teachers deleted successfully',
+  },
 };
