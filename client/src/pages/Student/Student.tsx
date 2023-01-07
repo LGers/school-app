@@ -1,23 +1,30 @@
 import * as React from 'react';
 import { useSelector } from 'react-redux';
-import { Result } from 'antd';
 import { RootState } from '../../redux/store';
-import { MESSAGES } from './Student.dictionary';
+import { DIARY, MESSAGES } from './Student.dictionary';
 import { ContentWrapper } from '../../components/ContentWrapper';
+import { DiaryCard } from '../../components/DiaryCard';
+import s from './Student.module.scss';
 
-const { M1, M2 } = MESSAGES;
+const { CLASS, SCHEDULE } = MESSAGES;
 
 export function Student() {
   const { auth } = useSelector((state: RootState) => state);
 
-  const { firstName, lastName } = auth.user;
+  const diaryCards = DIARY.map((day) => (
+    <DiaryCard key={day.weekDay} weekDay={day.weekDay} subjects={day.subjects} />
+  ));
+
+  const { className } = auth.user;
+
   return (
     <ContentWrapper>
-      <Result
-        status="success"
-        title={`${M1}, ${firstName} ${lastName}.`}
-        subTitle={M2}
-      />
+      <h1>{`${CLASS} ${className} ${SCHEDULE}`}</h1>
+      <div className={s.studentContent}>
+        <div className={s.diaryContent}>
+          {diaryCards}
+        </div>
+      </div>
     </ContentWrapper>
   );
 }

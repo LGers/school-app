@@ -27,19 +27,19 @@ class TeacherController {
       const oneUser = await Users.findOne({ where: { id: userId } });
 
       if (!oneUser) {
-        return next(apiError.badRequest(`Error. No such User with id: ${userId}`));
+        return next(apiError.badRequest(`Teacher with id: ${userId} not found`));
       }
 
       const oneSubject = await Subject.findOne({ where: { id: subjectId } });
 
       if (!oneSubject) {
-        return next(apiError.badRequest(`Error. No such subject with id: ${subjectId}`));
+        return next(apiError.badRequest(`Teacher with id: ${userId} not found`));
       }
 
       const oneTeacher = await Teacher.findOne({ where: { userId, subjectId } });
 
       if (oneTeacher) {
-        return next(apiError.forbidden(`Error. Same teacher already exist`));
+        return next(apiError.forbidden(`Error. This teacher already exist`));
       }
 
       await oneUser.update({ role: 'TEACHER' });
@@ -59,7 +59,7 @@ class TeacherController {
       const item = await Teacher.findOne({ where: { id } });
 
       if (!item) {
-        return next(apiError.badRequest(`No such Teacher with id: ${id}`));
+        return next(apiError.badRequest(`Teacher with id: ${id} not found`));
       }
 
       return res.json(item);
@@ -75,7 +75,7 @@ class TeacherController {
       const { id } = req.params;
 
       if (!id) {
-        return next(apiError.badRequest(`No such Teacher with id: ${id}`));
+        return next(apiError.badRequest(`Teacher with id: ${id} not found`));
       }
 
       const { subjectId } = req.body;
@@ -87,19 +87,19 @@ class TeacherController {
       const oneSubject = await Subject.findOne({ where: { id: subjectId } });
 
       if (!oneSubject) {
-        return next(apiError.badRequest(`Error. No such subject with id: ${subjectId}`));
+        return next(apiError.badRequest(`Subject with id: ${id} not found`));
       }
 
       const item = await Teacher.findOne({ where: { id } });
 
       if (!item) {
-        return next(apiError.badRequest(`No such Teacher with id: ${id}`));
+        return next(apiError.badRequest(`Teacher with id: ${id} not found`));
       }
 
       const oneTeacher = await Teacher.findOne({ where: { userId: item.userId, subjectId } });
 
       if (oneTeacher) {
-        return next(apiError.forbidden(`Error. Same teacher already exist`));
+        return next(apiError.forbidden(`Error. This teacher already exist`));
       }
 
       const updatedItem = await item.update({ subjectId });
@@ -118,14 +118,14 @@ class TeacherController {
       const item = await Teacher.findOne({ where: { id } });
 
       if (!item) {
-        return next(apiError.badRequest(`No such Teacher with id: ${id}`));
+        return next(apiError.badRequest(`Teacher with id: ${id} not found`));
       }
 
       await Teacher.destroy({ where: { id } });
       const oneUser = await Users.findOne({ where: { id: item.userId } });
       await oneUser.update({ role: 'USER' });
 
-      return res.json({ message: 'Teacher deleted', id });
+      return res.json({ message: 'Teacher deleted successfully', id });
     } catch (error) {
       console.log('deleteTeacher error:', error);
 

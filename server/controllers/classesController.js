@@ -56,7 +56,7 @@ class ClassesController {
       const oneClass = await Class.findOne({ where: { id } });
 
       if (!oneClass) {
-        return next(apiError.badRequest(`No such class with id: ${id}`));
+        return next(apiError.badRequest(`Class with id: ${id} not found`));
       }
 
       return res.json({
@@ -78,7 +78,7 @@ class ClassesController {
       let oneClass = await Class.findOne({ where: { id } });
 
       if (!oneClass) {
-        return next(apiError.badRequest(`No such class with id: ${id}`));
+        return next(apiError.badRequest(`Class with id: ${id} not found`));
       }
 
       let { classNumber, classLetter } = req.body;
@@ -108,11 +108,11 @@ class ClassesController {
       let cl = await Class.findOne({ where: { id } });
       if (!cl) {
 
-        return next(apiError.badRequest(`No such class with id: ${id}`));
+        return next(apiError.badRequest(`Class with id: ${id} not found`));
       }
       await Class.destroy({ where: { id } });
 
-      return res.json({ message: 'Class deleted', id });
+      return res.json({ message: 'Class deleted successfully', id });
     } catch (error) {
       console.log('deleteClass error:', error);
 

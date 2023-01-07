@@ -46,7 +46,7 @@ class SubjectController {
       const item = await Subject.findOne({ where: { id } });
 
       if (!item) {
-        return next(apiError.badRequest(`No such Subject with id: ${id}`));
+        return next(apiError.badRequest(`Subject with id: ${id} not found`));
       }
 
       return res.json(item);
@@ -63,13 +63,13 @@ class SubjectController {
       const { subject } = req.body;
 
       if (!id) {
-        return next(apiError.badRequest(`No such Subject with id: ${id}`));
+        return next(apiError.badRequest(`Subject with id: ${id} not found`));
       }
 
       const item = await Subject.findOne({ where: { id } });
 
       if (!item) {
-        return next(apiError.badRequest(`No such Subject with id: ${id}`));
+        return next(apiError.badRequest(`Subject with id: ${id} not found`));
       }
 
       const oneSubject = await Subject.findOne({ where: { subject } });
@@ -94,12 +94,12 @@ class SubjectController {
       const item = await Subject.findOne({ where: { id } });
 
       if (!item) {
-        return next(apiError.badRequest(`No such Subject with id: ${id}`));
+        return next(apiError.badRequest(`Subject with id: ${id} not found`));
       }
 
       await Subject.destroy({ where: { id } });
 
-      return res.json({ message: 'Subject deleted', id });
+      return res.json({ message: 'Subject deleted successfully', id });
     } catch (error) {
       console.log('deleteSubject error:', error);
 
