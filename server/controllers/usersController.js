@@ -1,7 +1,7 @@
 const apiError = require('../error/ApiError');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const { Users } = require('../models/models');
+const { Users, Class } = require('../models/models');
 
 const INTERNAL_ERROR = 'Internal error.';
 
@@ -20,8 +20,9 @@ const generateJwt = (user) => {
 };
 
 const getOneUserData = (user) => {
-  const { id, firstName, lastName, email, role, } = user;
-  return { id, firstName, lastName, email, role };
+  const { id, firstName, lastName, email, role, classId } = user;
+
+  return { id, firstName, lastName, email, role, classId };
 };
 
 class UsersController {
@@ -29,15 +30,15 @@ class UsersController {
     try {
       const { firstName, lastName, email, password, role } = req.body;
       if (!firstName) {
-        return next(apiError.badRequest('First name is to short...'));
+        return next(apiError.badRequest('First name is too short...'));
       }
 
       if (!lastName) {
-        return next(apiError.badRequest('Last name is to short...'));
+        return next(apiError.badRequest('Last name is too short...'));
       }
 
       if (!email || !password) {
-        return next(apiError.badRequest('Email or password incorrect'));
+        return next(apiError.badRequest('Email or password is incorrect'));
       }
 
       const candidate = await Users.findOne({ where: { email } });
@@ -119,14 +120,15 @@ class UsersController {
   async updateUser(req, res, next) {
     try {
       const { id } = req.params;
+      // console.log('id', id);
       const user = await Users.findOne({ where: { id } });
 
       if (!user) {
-        return next(apiError.badRequest(`No such user with id: ${id}`));
+        return next(apiError.badRequest(`User with id: ${id} not found`));
       }
 
-      const { firstName, lastName, email, role, password, classId } = req.body;
-      const newUser = { firstName, lastName, email, role, classId };
+      const { firstName, lastName, email, role, password } = req.body;
+      const newUser = { firstName, lastName, email, role };
 
       if (password) {
         newUser.password = await bcrypt.hash(password, 12);
@@ -136,14 +138,26 @@ class UsersController {
         const candidate = await Users.findOne({ where: { email } });
         if (candidate && candidate.id !== +id) {
           return next(apiError
-            .badRequest('The user with such email already exist. Enter another email.')
+            .badRequest('User with such email already exists. Enter another email.')
           );
         }
       }
 
       const updatedUser = await user.update({ ...newUser, where: { id } });
+      const { classId } = updatedUser;
+      let className = '';
+      const oneClass = await Class.findOne({ where: { id: classId } });
 
-      return res.json(getOneUserData(updatedUser));
+      if (oneClass) {
+        className = oneClass.classNumber + oneClass.classLetter;
+      }
+
+      const oneUserData = oneClass
+        ? { ...getOneUserData(updatedUser), className }
+        : { ...getOneUserData(updatedUser), className: '' }
+      ;
+
+      return res.json(oneUserData);
     } catch (error) {
       console.log('updateUser error:', error);
 
@@ -157,12 +171,12 @@ class UsersController {
       const user = await Users.findOne({ where: { id } });
 
       if (!user) {
-        return next(apiError.badRequest(`No such user with id: ${id}`));
+        return next(apiError.badRequest(`User with id: ${id} not found`));
       }
 
       await Users.destroy({ where: { id } });
 
-      return res.json({ message: 'User deleted', id: user.id });
+      return res.json({ message: 'User deleted successfully', id: user.id });
     } catch (error) {
       console.log('getOneUser error:', error);
 
@@ -176,10 +190,22 @@ class UsersController {
       const user = await Users.findOne({ where: { id } });
 
       if (!user) {
-        return next(apiError.badRequest(`No such user with id: ${id}`));
+        return next(apiError.badRequest(`User with id: ${id} not found`));
       }
 
-      return res.json(getOneUserData(user));
+      const { classId } = user;
+      let className ='';
+      const oneClass = await Class.findOne({ where: { id: classId } });
+
+      if (oneClass) {
+        className = oneClass.classNumber + oneClass.classLetter;
+      }
+
+      const oneUserData = oneClass
+        ? { ...getOneUserData(user), className }
+        : { ...getOneUserData(user), className: '' }
+      ;
+      return res.json(oneUserData);
     } catch (error) {
       console.log('getOneUser error:', error);
 

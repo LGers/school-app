@@ -1,0 +1,17 @@
+.student {
+  &Content {
+    margin-right: 0.75rem;
+  }
+}
+
+.diary {
+  &Content {
+    display: grid;
+    gap: 0.5rem;
+    grid-template-columns: 1fr 1fr;
+
+    @media all and (max-width: 576px) {
+      grid-template-columns: 1fr;
+    }
+  }
+}

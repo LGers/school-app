@@ -8,6 +8,8 @@ export interface User {
   lastName: string;
   role: string;
   email: string;
+  classId?: number;
+  className?: string;
 }
 
 export interface AuthState {

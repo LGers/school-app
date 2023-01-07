@@ -1,0 +1,54 @@
+@mixin diaryCardGrid {
+  position: relative;
+  display: grid;
+  grid-template-columns: 2fr 3fr 5fr 2fr;
+  border-bottom: 1px solid #0000000f;
+
+  @media all and (max-width: 992px) {
+    grid-template-columns: 1fr;
+    border-bottom: 1px solid #0000000f;
+    :nth-child(n) {
+      border-bottom: 1px solid #0000000f;
+    }
+    :nth-child(n):not(:first-child) {
+      &:before {
+        display: none;
+      }
+    }
+  }
+
+  :nth-child(n):not(:first-child) {
+    &:before {
+      background-color: #0000000f;
+      content: "";
+      height: 75%;
+      left: 0;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 1px;
+    }
+  }
+}
+
+.card {
+  &Row {
+    @include diaryCardGrid;
+
+    @media all and (max-width: 992px) {
+      border: 1px solid #0000000f;
+      margin-bottom: 1rem;
+    }
+  }
+
+
+  &Cell {
+    overflow: hidden;
+    overflow-wrap: break-word;
+    padding: 0.5rem;
+    position: relative;
+    text-align: center;
+    text-overflow: ellipsis;
+    text-wrap: normal;
+  }
+}

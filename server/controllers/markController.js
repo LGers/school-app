@@ -39,7 +39,7 @@ class MarkController {
       }
 
       if (!mark || mark < 1) {
-        return next(apiError.forbidden(`Error. Mark ${mark} is not correct`));
+        return next(apiError.forbidden(`Mark ${mark} is not correct`));
       }
 
       let item = await Users.findOne({ where: { id: userId } });
@@ -89,7 +89,7 @@ class MarkController {
       const mark = await Mark.findOne({ where: { id } });
 
       if (!mark) {
-        return next(apiError.badRequest(`No such Mark with id: ${id}`));
+        return next(apiError.badRequest(`Mark with id: ${id} not found`));
       }
 
       return res.json(mark);
@@ -107,11 +107,11 @@ class MarkController {
       const item = await Mark.findOne({ where: { id } });
 
       if (!mark || mark < 1) {
-        return next(apiError.forbidden(`Error. Mark ${mark} is not correct`));
+        return next(apiError.forbidden(`Mark ${mark} is not correct`));
       }
 
       if (!item) {
-        return next(apiError.badRequest(`No such Mark with id: ${id}`));
+        return next(apiError.badRequest(`Mark with id: ${id} not found`));
       }
 
       const updatedMark = await item.update({ mark, where: { id } });
@@ -130,12 +130,12 @@ class MarkController {
       const item = await Mark.findOne({ where: { id } });
 
       if (!item) {
-        return next(apiError.badRequest(`No such Mark with id: ${id}`));
+        return next(apiError.badRequest(`Mark with id: ${id} not found`));
       }
 
       await Mark.destroy({ where: { id } });
 
-      return res.json({ message: 'Mark deleted', id });
+      return res.json({ message: 'Mark deleted successfully', id });
     } catch (error) {
       console.log('deleteMark error:', error);
 
