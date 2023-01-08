@@ -120,7 +120,6 @@ class UsersController {
   async updateUser(req, res, next) {
     try {
       const { id } = req.params;
-      // console.log('id', id);
       const user = await Users.findOne({ where: { id } });
 
       if (!user) {
@@ -194,7 +193,7 @@ class UsersController {
       }
 
       const { classId } = user;
-      let className ='';
+      let className = '';
       const oneClass = await Class.findOne({ where: { id: classId } });
 
       if (oneClass) {
