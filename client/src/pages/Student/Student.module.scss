@@ -2,6 +2,16 @@
   &Content {
     margin-right: 0.75rem;
   }
+
+  &Date {
+    align-items: center;
+    display: flex;
+    flex-wrap: nowrap;
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    margin-left: 1rem;
+  }
 }
 
 .diary {

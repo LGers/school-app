@@ -52,3 +52,20 @@ export interface UpdateUserRoleInterface {
   id: number;
   role: string;
 }
+
+export interface UpdateScheduleRecord {
+  id: number;
+  teacherId: number | string;
+  homework: string;
+}
+
+export interface ScheduleRecord extends UpdateScheduleRecord {
+  classId: string | number;
+  date: string;
+  subjectId: number | string;
+}
+
+export interface ScheduleRecordsByWeek {
+  classId: string | number;
+  weekDay: string;
+}
