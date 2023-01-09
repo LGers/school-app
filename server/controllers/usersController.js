@@ -126,8 +126,8 @@ class UsersController {
         return next(apiError.badRequest(`User with id: ${id} not found`));
       }
 
-      const { firstName, lastName, email, role, password } = req.body;
-      const newUser = { firstName, lastName, email, role };
+      const { firstName, lastName, email, role, password, classId } = req.body;
+      const newUser = { id, firstName, lastName, email, role, classId };
 
       if (password) {
         newUser.password = await bcrypt.hash(password, 12);
@@ -143,18 +143,19 @@ class UsersController {
       }
 
       const updatedUser = await user.update({ ...newUser, where: { id } });
-      const { classId } = updatedUser;
       let className = '';
-      const oneClass = await Class.findOne({ where: { id: classId } });
+      let oneUserData = { ...getOneUserData(updatedUser), className: '' };
+      if (classId) {
 
-      if (oneClass) {
-        className = oneClass.classNumber + oneClass.classLetter;
+        const oneClass = await Class.findOne({ where: { id: classId } });
+
+        if (oneClass) {
+          className = oneClass.classNumber + oneClass.classLetter;
+        }
+
+        oneUserData = { ...getOneUserData(updatedUser), className };
       }
 
-      const oneUserData = oneClass
-        ? { ...getOneUserData(updatedUser), className }
-        : { ...getOneUserData(updatedUser), className: '' }
-      ;
 
       return res.json(oneUserData);
     } catch (error) {
